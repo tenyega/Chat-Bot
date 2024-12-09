@@ -1,3 +1,5 @@
+import { GEMINI_API_KEY } from './config.js';
+
 const responses = {
     "hello": "Hi there! How can I help you today?",
     "how are you": "I'm just a bot, but I'm doing great! How about you?",
@@ -54,7 +56,6 @@ const responses = {
     "default": "I dont understand your question, sorry :-("
 };
 
-
 const form = document.getElementById('form');
 const answer = document.getElementById('answer');
 const btn = document.getElementById('btn');
@@ -83,7 +84,10 @@ form.addEventListener('submit', (e) => {
 
 
 });
-const apiKey = "AIzaSyD0LkGYKCvH9lr_Rly81AHUgo5cmRoDwh4";
+
+
+
+const apiKey = GEMINI_API_KEY;
 const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 console.log('hi', question.value);
 // Request payload
