@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Assistant</title>
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-icons@0.321.0/font/lucide-icons.min.css">
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="chatbot.css">
-    
+
     <!-- Meta Tags -->
     <meta name="description" content="AI-Powered Conversational Assistant">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Burger Menu Toggle -->
@@ -34,7 +36,7 @@
                     <span>New Chat</span>
                 </button>
             </div>
-            
+
             <nav class="chat-history">
                 <h3>Recent Chats</h3>
                 <ul>
@@ -54,7 +56,7 @@
                     </li>
                 </ul>
             </nav>
-            
+
             <div class="sidebar-footer">
                 <div class="user-profile">
                     <img src="https://ui-avatars.com/api/?name=John+Doe" alt="User Avatar" class="avatar">
@@ -65,7 +67,7 @@
                 </button>
             </div>
         </aside>
-        
+
         <!-- User Account Popup -->
         <div class="user-account-popup" id="userAccountPopup">
             <div class="popup-content">
@@ -91,7 +93,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Main Chat Interface -->
         <main class="chat-container">
             <header class="chat-header">
@@ -105,43 +107,38 @@
                     </button>
                 </div>
             </header>
-            
+
             <div class="chat-messages" id="chatMessages">
-                <div class="message user-message">
-                    <div class="message-content">
-                        <p>What are the best practices for responsive web design?</p>
-                    </div>
-                </div>
                 <div class="message ai-message">
                     <div class="message-content">
-                        <p>Responsive web design involves several key practices:</p>
-                        <ul>
-                            <li>Use flexible grid layouts</li>
-                            <li>Implement media queries</li>
-                            <li>Use relative units like percentages</li>
-                            <li>Optimize images and media</li>
-                        </ul>
+                        <p id="answer"></p>
                     </div>
                 </div>
             </div>
-            
+
+            <!--
             <form class="chat-input-form" id="chatForm">
                 <div class="input-container">
-                    <textarea 
-                        id="chatInput" 
-                        placeholder="Type your message..."
-                        rows="1"
-                    ></textarea>
+                    <textarea id="chatInput" placeholder="Type your message..." rows="1"></textarea>
                     <button type="submit" class="send-btn">
                         <i data-lucide="send"></i>
                     </button>
                 </div>
+            </form>-->
+            <form id="form">
+
+                <label for="question"> POSEZ VOTRE QUESTION ICI:</label>
+                <input type="text" id="question" name="question" aria-valuetext="question" /><br /><br />
+
+                <button type="submit" id="btn">submit</button><br>
+
             </form>
         </main>
     </div>
-    
+
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="chatbot.js" type="module"></script>
 </body>
+
 </html>

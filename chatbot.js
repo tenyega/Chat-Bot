@@ -61,7 +61,7 @@ const btn = document.getElementById('btn');
 const question = document.getElementById('question');
 console.log('question', question.value);
 
-form.addEventListener('submit', (e) => {
+/*form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log('question', question.value);
 
@@ -71,4 +71,54 @@ form.addEventListener('submit', (e) => {
 
     const inputValue = question.value.toLowerCase().trim();
 
-})
+});*/
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('question', question.value);
+
+
+    generateContent();
+
+
+
+});
+const apiKey = "AIzaSyD0LkGYKCvH9lr_Rly81AHUgo5cmRoDwh4";
+const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+console.log('hi', question.value);
+// Request payload
+
+
+// Function to make the API request
+async function generateContent() {
+    const requestData = {
+
+        contents: [{
+            parts: [{
+                text: question.value,
+            }, ],
+        }, ],
+    };
+    try {
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log("AI Response:", data.candidates[0].content.parts[0].text);
+        answer.innerHTML = data.candidates[0].content.parts[0].text;
+
+    } catch (error) {
+        console.error("Error during API call:", error);
+    }
+}
+
+// Call the function
