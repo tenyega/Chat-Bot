@@ -50,7 +50,8 @@ const responses = {
     "do you like music": "I think it's fascinating, but I can't hear it.",
     "are you dangerous": "Not at all! I'm designed to be helpful and safe.",
     "what is your favorite sport": "I can't play, but soccer is very popular.",
-    "what is your favorite holiday": "I think all holidays are fun in their own way!"
+    "what is your favorite holiday": "I think all holidays are fun in their own way!",
+    "default": "I dont understand your question, sorry :-("
 };
 
 
