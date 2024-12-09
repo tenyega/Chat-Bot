@@ -1,64 +1,58 @@
-const responses = {
-    "hello": "Hi there! How can I help you today?",
-    "how are you": "I'm just a bot, but I'm doing great! How about you?",
-    "what is your name": "I'm a simple chatbot created using TensorFlow.js.",
-    "default": "I'm not sure how to respond to that. Can you ask something else?",
-    "toxic": "Please keep the conversation respectful."
-};
-  
-const form = document.getElementById('form');
-const answer = document.getElementById('answer');
-const btn = document.getElementById('btn');
-const question = document.getElementById('question');
-console.log('question', question.value);
+// Initialize Lucide Icons
+lucide.createIcons();
 
-form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    console.log('question', question.value);
+// Burger Menu Toggle
+const burgerMenu = document.querySelector('.burger-menu');
+const sidebar = document.querySelector('.sidebar');
 
+burgerMenu.addEventListener('click', () => {
+    burgerMenu.classList.toggle('active');
+    sidebar.classList.toggle('mobile-open');
+});
 
-    // if (question.value === "hello") {
-    //     answer.innerText = responses.hello;
+// User Account Popup
+const userProfile = document.querySelector('.user-profile');
+const userAccountPopup = document.getElementById('userAccountPopup');
+const closePopupBtn = userAccountPopup.querySelector('.close-popup');
+
+// Open popup when clicking user profile
+userProfile.addEventListener('click', () => {
+    userAccountPopup.classList.add('active');
+});
+
+// Close popup when clicking close button
+closePopupBtn.addEventListener('click', () => {
+    userAccountPopup.classList.remove('active');
+});
+
+// Close popup when clicking outside of popup content
+userAccountPopup.addEventListener('click', (e) => {
+    if (e.target === userAccountPopup) {
+        userAccountPopup.classList.remove('active');
+    }
+});
+
+// Responsive sidebar handling
+function handleResponsiveSidebar() {
+    if (window.innerWidth <= 1200) {
+        burgerMenu.style.display = 'flex';
         
-    // } else if (question.value === "how are you") {
-    //     answer.innerText = responses["how are you"];
+        // Close sidebar when a chat item is clicked
+        const chatItems = document.querySelectorAll('.chat-item');
+        chatItems.forEach(item => {
+            item.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                sidebar.classList.remove('mobile-open');
+            });
+        });
+    } else {
+        burgerMenu.style.display = 'none';
+        sidebar.classList.remove('mobile-open');
+    }
+}
 
-        
-    // } else if (question.value === 'what is your name') {
-    //     answer.innerText =responses["what is your name"]
+// Initial responsive check
+handleResponsiveSidebar();
 
-
-    // }else if (question.value === 'default') {
-    //     answer.innerText = responses["default"];
-
-
-    // }else if (question.value === 'toxic') {
-    //     answer.innerText = responses["toxic"];
-    // }
-
-console.log('slsl', responses.hasOwnProperty(question.value));
-
-   answer.innerHTML= responses.hasOwnProperty(question.value)? responses[question.value]: responses['default']
-
-    //ANother way of doing by Quentin
-    //answer.innerHTML = responses[question.value] || responses['default']
-
-    // another way by prof
-     const inputValue = question.value.toLowerCase().trim();
-    // answer.innerHTML = responses[inputValue] || responses['default'];
-
-    //another way by prof
-    // for (const key in responses) {
-    //     if (inputValue.includes[key]) {
-    //         console.log('key', key);
-    //         answer.innerHTML = responses[key];
-    //         find = true;
-    //     }
-    // }
-    // if (!find) {
-    //     answer.innerHTML = responses.default;
-    // }
-})
-
-
-
+// Recheck on window resize
+window.addEventListener('resize', handleResponsiveSidebar);

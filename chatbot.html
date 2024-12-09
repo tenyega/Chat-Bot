@@ -1,24 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Bot</title>
-    <link rel="stylesheet" href="./chatbot.css">
+    <title>AI Assistant</title>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-icons@0.321.0/font/lucide-icons.min.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="chatbot.css">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="AI-Powered Conversational Assistant">
 </head>
-
 <body>
-    <h1>Welcome to the chat bot</h1>
-    <form id="form">
+    <div class="app-container">
+        <!-- Burger Menu Toggle -->
+        <button class="burger-menu" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <label for="question"> POSEZ VOTRE QUESTION ICI: (test mouhssine)</label>
-        <input type="text" id="question" name="question" aria-valuetext="question" /><br /><br />
-
-        <button type="submit" id="btn">submit</button><br>
-        <p id="answer"></p>
-    </form>
-    <script src="./chatbot.js"></script>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn">
+                    <i data-lucide="plus"></i>
+                    <span>New Chat</span>
+                </button>
+            </div>
+            
+            <nav class="chat-history">
+                <h3>Recent Chats</h3>
+                <ul>
+                    <li class="chat-item active">
+                        <i data-lucide="message-circle"></i>
+                        <span>Web Development Tips</span>
+                        <button class="delete-chat">
+                            <i data-lucide="trash-2"></i>
+                        </button>
+                    </li>
+                    <li class="chat-item">
+                        <i data-lucide="message-circle"></i>
+                        <span>Marketing Strategy</span>
+                        <button class="delete-chat">
+                            <i data-lucide="trash-2"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe" alt="User Avatar" class="avatar">
+                    <span class="user-name">John Doe</span>
+                </div>
+                <button class="settings-btn">
+                    <i data-lucide="settings"></i>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- User Account Popup -->
+        <div class="user-account-popup" id="userAccountPopup">
+            <div class="popup-content">
+                <button class="close-popup">&times;</button>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe" alt="User Avatar" class="avatar">
+                    <h2>John Doe</h2>
+                    <p>john.doe@example.com</p>
+                </div>
+                <div class="popup-actions">
+                    <button>
+                        <i data-lucide="user"></i>
+                        Profile
+                    </button>
+                    <button>
+                        <i data-lucide="settings"></i>
+                        Account Settings
+                    </button>
+                    <button>
+                        <i data-lucide="log-out"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Chat Interface -->
+        <main class="chat-container">
+            <header class="chat-header">
+                <h1>AI Assistant</h1>
+                <div class="header-actions">
+                    <button class="action-btn" aria-label="Clear Conversation">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                    <button class="action-btn" aria-label="Settings">
+                        <i data-lucide="settings-2"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message user-message">
+                    <div class="message-content">
+                        <p>What are the best practices for responsive web design?</p>
+                    </div>
+                </div>
+                <div class="message ai-message">
+                    <div class="message-content">
+                        <p>Responsive web design involves several key practices:</p>
+                        <ul>
+                            <li>Use flexible grid layouts</li>
+                            <li>Implement media queries</li>
+                            <li>Use relative units like percentages</li>
+                            <li>Optimize images and media</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="chat-input-form" id="chatForm">
+                <div class="input-container">
+                    <textarea 
+                        id="chatInput" 
+                        placeholder="Type your message..."
+                        rows="1"
+                    ></textarea>
+                    <button type="submit" class="send-btn">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="chatbot.js" type="module"></script>
 </body>
-
 </html>
