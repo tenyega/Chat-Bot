@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'authentification</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Connexion</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="adresse_email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot De passe</label>
+                <input type="password" id="password" name="mot_de_passe" required>
+            </div>
+            <button type="submit" class="btn">Se connecter</button>
+        </form>
+        <p class="register-link">Pas encore inscrit ? <a href="register.html">Créer un compte</a></p>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+            const formData = new FormData(event.target);
+
+            try {
+                // Envoyer les données au serveur avec fetch
+                const response = await fetch('connexion.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // Vérifier si la réponse est correcte
+                if (response.ok) {
+                    const result = await response.text();
+                    alert(result); // Affichez un message de succès ou d'erreur
+                    if (result.includes("Connexion réussie")) {
+                        window.location.href = 'chatbot.html'; // Redirige vers chatbot.html si la connexion réussie
+                    }
+                } else {
+                    const errorText = await response.text();
+                    alert("Erreur : " + errorText); // Afficher un message d'erreur si la connexion échoue
+                }
+            } catch (error) {
+                alert("Une erreur s'est produite : " + error.message); // Afficher une erreur si le serveur n'est pas accessible
+            }
+        });
+    </script>
+</body>
+</html>
