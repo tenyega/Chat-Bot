@@ -125,4 +125,55 @@ async function generateContent() {
     }
 }
 
-// Call the function
+document.getElementById("btn_clear").addEventListener("click", clearChat);
+const chatHistory = document.querySelector('ul');
+
+function clearChat() {
+    /*if (document.getElementById('history').innerHTML == "") {
+        document.getElementById('history').innerHTML = answer.innerHTML.substring(0, 15) + "...";
+
+    } else {
+        document.getElementById('history').nextSibling = answer.innerHTML.substring(0, 15) + "...";
+
+    }*/
+    if (answer.innerHTML.trim() !== "") {
+        // Create a new <li> element
+        const newChatItem = document.createElement('li');
+        newChatItem.className = "flex items-center justify-between bg-gray-100 p-3 rounded-lg mb-2 cursor-pointer";
+
+        // Create the inner structure of the <li>
+        const chatContent = document.createElement('div');
+        chatContent.className = "flex items-center";
+        const icon = document.createElement('i');
+        icon.className = "mr-3 text-gray-500";
+        icon.setAttribute('data-lucide', 'message-circle');
+        const chatText = document.createElement('span');
+        chatText.textContent = answer.innerHTML.substring(0, 15) + "...";
+
+        chatContent.appendChild(icon);
+        chatContent.appendChild(chatText);
+
+        // Add the delete button
+        const deleteButton = document.createElement('button');
+        const trashIcon = document.createElement('i');
+        trashIcon.className = "text-gray-400 hover:text-red-500";
+        trashIcon.setAttribute('data-lucide', 'trash-2');
+        deleteButton.appendChild(trashIcon);
+
+        deleteButton.addEventListener('click', function() {
+            newChatItem.remove(); // Remove the <li> containing this button
+        });
+        // Append everything to the <li>
+        newChatItem.appendChild(chatContent);
+        newChatItem.appendChild(deleteButton);
+
+        // Append the <li> to the <ul>
+        chatHistory.appendChild(newChatItem);
+
+        // Optional: Reinitialize Lucide icons if needed
+        lucide.createIcons();
+    }
+    answer.innerHTML = "";
+    question.value = "";
+
+}
